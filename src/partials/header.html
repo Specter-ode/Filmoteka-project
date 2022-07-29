@@ -1,0 +1,95 @@
+<header class="page-header">
+  <div class="page-header__menu-container">
+    <a class="logo" href="/src/index.html">
+      <svg width="24px" height="24px">
+        <use
+          class="logo__icon-filmoteka"
+          href="./images/sprite/symbol-defs.svg#icon-film"
+        ></use>
+      </svg>
+      <span class="logo__text">Filmoteka</span>
+    </a>
+    <nav class="nav-menu">
+      <ul class="nav-menu__list fade-in-right">
+        <li class="nav-menu__item">
+          <a class="nav-menu__link current-page-red" href="/src/index.html"
+            >HOME</a
+          >
+        </li>
+        <li class="nav-menu__item">
+          <a
+            class="nav-menu__link library-link is-unactive"
+            href="/src/library.html"
+            >MY LIBRARY</a
+          >
+        </li>
+        <li class="nav-menu__item">
+          <div class="login-wrap">
+            <a href="#" class="nav-menu__link js-link" data-signup-open
+              >SIGN UP</a
+            >
+            <a href="#" class="nav-menu__link js-link" data-signin-open
+              >SIGN IN</a
+            >
+          </div>
+        </li>
+        <li class="nav-menu__item">
+          <span class="logout-wrap is-hidden"
+            ><a
+              href="/src/index.html"
+              class="nav-menu__link logout js-link"
+              data-logout
+              >LOG OUT</a
+            ></span
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="header-search">
+    <svg
+      class="header-search__icon-record is-hidden"
+      width="18px"
+      height="18px"
+    >
+      <use href="./images/sprite/symbol-defs.svg#icon-record"></use>
+    </svg>
+    <button class="header-search__btn-mic" data-active-mic>
+      <svg class="header-search__icon-mic" width="24px" height="24px">
+        <use href="./images/sprite/symbol-defs.svg#icon-mic"></use>
+      </svg>
+    </button>
+    <label>
+      <input
+        class="header-search__input js-search"
+        type="text"
+        name="searchQuery"
+        autocomplete="off"
+        placeholder="Movie search"
+        required
+      />
+    </label>
+    <svg class="header-search__icon" width="16px" height="16px">
+      <use href="./images/sprite/symbol-defs.svg#icon-search"></use>
+    </svg>
+  </div>
+  <div class="filter">
+    <form class="filter__form">
+      <select class="filter__input" name="genre" id="genre_choice">
+        <option value="">Choose genre</option>
+      </select>
+      <select class="filter__input" name="year" id="year_choice"></select>
+      <select class="filter__input" name="sort" id="sort_choice">
+        <option value="vote_average.desc">Sort by</option>
+        <option value="vote_average.desc">Average voite</option>
+        <option value="vote_count.desc">Vote count</option>
+        <option value="popularity.desc">Popularity</option>
+      </select>
+    </form>
+    <h2 class="filter__title">Filter movies</h2>
+    <div class="page-header__buttons js-btn__header js-visible">
+      <button class="button queued active" data-action="queue">Queue</button>
+      <button class="button watched" data-action="watched">Watched</button>
+    </div>
+  </div>
+</header>

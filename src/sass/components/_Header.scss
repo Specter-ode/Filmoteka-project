@@ -1,0 +1,362 @@
+.page-header {
+  @extend %container;
+  @include font(null, 500, 1.14, null);
+  padding-top: 40px;
+  padding-bottom: 22px;
+  background: radial-gradient(
+    circle,
+    rgba(208, 4, 4, 1) 7%,
+    rgba(5, 5, 5, 1) 76%
+  );
+  box-shadow: 0px 10px 36px 16px #e2e2e2;
+  background-image: url(/src/images/header/header-background-mob1x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  @include retina {
+    background-image: url(/src/images/header/header-background-mob2x.png);
+  }
+
+  &__menu-container {
+    display: flex;
+  }
+  @include tablet {
+    background-image: url(/src/images/header/header-background-tablet1x.png);
+    padding-bottom: 40px;
+
+    @include retina {
+      background-image: url(/src/images/header/header-background-tablet2x.png);
+    }
+  }
+  @include desktop {
+    background: url(/src/images/header/header-background-desktop1x.png);
+    @include retina {
+      background-image: url(/src/images/header/header-background-desktop2x.png);
+    }
+  }
+}
+.logo {
+  @extend %flex-align-centr;
+  color: var(--header-text-color);
+  &:hover {
+    transform: scale(1.2);
+    transition: transform 500ms;
+  }
+  &__text {
+    display: none;
+    margin-left: 9px;
+  }
+  &__icon-filmoteka {
+    // fill: #ff001b;
+    transform-origin: center;
+    animation: animate360 3000ms cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+  }
+
+  @include tablet {
+    &__text {
+      display: block;
+      @include font(30px, 500, 1.17, null);
+    }
+  }
+}
+.nav-menu {
+  @media screen and (max-width: 767px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-left: auto;
+  }
+  &__list {
+    display: block;
+    text-align: center;
+    @media screen and (min-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &__item {
+    position: relative;
+    margin-bottom: 15px;
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 0;
+    }
+  }
+  &__item:not(:last-child) {
+    margin-right: 19px;
+
+    @media screen and (min-width: 768px) {
+      margin-right: 39px;
+    }
+  }
+}
+a {
+  color: var(--header-text-color);
+}
+.page-header .header-search {
+  @extend %flex-align-centr;
+  position: relative;
+  width: 280px;
+  margin: 57px auto 0 auto;
+  @include tablet {
+    width: 336px;
+    margin-top: 49px;
+  }
+  @include desktop {
+    width: 394px;
+    margin-top: 50px;
+  }
+
+  &__input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid var(--header-text-color);
+    background-color: transparent;
+    color: var(--header-text-color);
+    @include font(14, 400, 1.14, null);
+    &::placeholder {
+      color: var(--header-text-color);
+      @include font(14, 400, 1.14, null);
+    }
+  }
+  &__icon {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    background-color: transparent;
+    border: transparent;
+  }
+
+  &__btn-mic {
+    margin-right: 8px;
+    background-color: transparent;
+    border: transparent;
+    padding: 0;
+    color: var(--header-text-color);
+    transition: transform 500ms linear;
+  }
+  &__icon-mic {
+    fill: currentColor;
+  }
+
+  &__icon-record {
+    margin-right: 8px;
+    fill: red;
+    background-color: transparent;
+    border: transparent;
+  }
+  &__icon-record.visually-hidden {
+    opacity: 0;
+  }
+}
+label {
+  position: relative;
+  width: 100%;
+}
+.-active {
+  animation: fire-color 700ms linear infinite alternate;
+}
+@keyframes fire-color {
+  0% {
+    color: var(--header-text-color);
+  }
+  100% {
+    transform: scale(1.7);
+    color: var(--button-activeHover-color);
+  }
+}
+
+.filter {
+  width: 180px;
+  margin: 30px auto 0 auto;
+
+  &__title {
+    margin-left: 30px;
+    @include font(14, 500, 1.5, 0.02em);
+    color: var(--header-text-color);
+    text-align: center;
+    margin-top: 20px;
+  }
+  &__form {
+    margin-left: 30px;
+    @media screen and (min-width: 768px) {
+      margin-left: 0;
+      display: flex;
+    }
+  }
+  @include tablet {
+    width: 450px;
+    &__title {
+      margin-left: 0px;
+    }
+  }
+  &__input {
+    // width: 180px;
+    // width: calc((100% - 40px) / 3);
+    @include font(12, 500, 1.15, 0.02em);
+    text-align: center;
+    display: block;
+    color: #444;
+    padding: 5px 30px 3px 20px;
+    width: 150px;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid var(--underline-title-colorNotiflix-failure-color);
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    border-radius: 6px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--header-text-color);
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+      linear-gradient(to bottom, var(--header-text-color) 0%, #eb5a06a2 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right 5px top 58%, 0;
+    background-size: 14px auto, 100%;
+    @media screen and (max-width: 767px) {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+    @media screen and (min-width: 768px) {
+      &:not(:last-child) {
+        margin-right: 30px;
+      }
+    }
+
+    &__input::-ms-expand {
+      display: none;
+    }
+    &__input:hover {
+      border-color: rgb(111, 111, 111);
+    }
+    &__input:focus {
+      border-color: #aaa;
+      box-shadow: 0 0 1px 1px rgb(231, 3, 3);
+      box-shadow: 0 0 0 3px -moz-mac-focusring;
+      color: #222;
+      outline: none;
+    }
+    &__input option {
+      font-weight: 500;
+    }
+  }
+}
+
+.current-page-red::after {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  display: inline-block;
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color: var(--underline-title-colorNotiflix-failure-color);
+}
+.current-page-gold::after {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  display: inline-block;
+  content: '';
+  width: 100%;
+  height: 3px;
+  background-color: var(--description-accent-color);
+}
+
+//2 buttons from library page
+.page-header__buttons {
+  @extend %flexCentered;
+}
+.button {
+  width: 130px;
+  padding: 12px 0px;
+  margin-top: 63px;
+
+  color: var(--header-text-color);
+  background-color: transparent;
+  border-color: var(--header-text-color);
+  border-radius: 5px;
+
+  @include font(12px, 500, 1.33, null);
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.3s linear;
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
+  &:not(:last-child) {
+    margin-right: 16px;
+  }
+  @include tablet {
+    & {
+      padding: 12px 0px;
+      margin-top: 51px;
+    }
+    &:not(:last-child) {
+      margin-right: 32px;
+    }
+  }
+  @include desktop {
+    & {
+      padding: 11px 0px;
+    }
+    &:not(:last-child) {
+      margin-right: 16px;
+    }
+  }
+}
+.active {
+  background-color: var(--button-activeHover-color);
+  box-shadow: 0px 8px 43px var(--button-activeHover-color);
+  border: none;
+}
+
+.page-header--library-container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+    url(/src/images/headerLibrary/headerLibrary-background-mob1x.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  @include retina {
+    background-image: url(/src/images/headerLibrary/headerLibrary-background-mob2x.png);
+  }
+
+  @include tablet {
+    padding-bottom: 80px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/src/images/headerLibrary/headerLibrary-background-tablet1x.png);
+    @include retina {
+      background-image: url(/src/images/headerLibrary/headerLibrary-background-tablet2x.png);
+    }
+  }
+  @include desktop {
+    background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
+      url(/src/images/headerLibrary/headerLibrary-background-desktop1x.png);
+    @include retina {
+      background-image: url(/src/images/headerLibrary/headerLibrary-background-desktop2x.png);
+    }
+  }
+}
+
+//------------------------------ Generated by Animista on 2022-7-26 -------------------------------------
+.fade-in-right {
+  -webkit-animation: fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+.js-visible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
