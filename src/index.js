@@ -1,4 +1,5 @@
 import './script/refs';
+import './script/getGenres';
 import './script/gallery';
 import './script/cardMarkup';
 import './script/onOpenCard';
@@ -12,4 +13,4 @@ import './script/scrollUp';
 import './script/modal_developer';
 
 // import './script/localStorageKey';
-// import './script/modalButton';
+import './script/onClickAddToLibrary';

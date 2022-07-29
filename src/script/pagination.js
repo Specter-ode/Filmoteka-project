@@ -21,6 +21,12 @@ export function paginationStart(data) {
   return paginationTui;
 }
 
+export function paginationOff() {
+  paginationTui.off('afterMove', popularPagination);
+  paginationTui.off('afterMove', searchPagination);
+  paginationTui.off('afterMove', microphonePagination);
+  paginationTui.off('afterMove', filterPagination);
+}
 export async function filterPagination(eventData) {
   movieApi.page = eventData.page;
   let promise;

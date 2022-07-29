@@ -54,12 +54,10 @@ export const movieCard = ({
               ${overview}
           </p>
           <ul class="button__place">
-          <button type="button" class="film-modal__button film-modal__button--active " data-id="${id}" data-action="queueModal"> queue
-  </button>
-           <button type="button" class="film-modal__button " data-action="watchedModal"> watched
-           </button>
+          <button type="button" class="film-modal__button queue-js" data-id="${id}" name="QUEUE">ADD TO QUEUE</button>
+           <button type="button" class="film-modal__button watched-js" data-id="${id}" name="WATCHED">ADD TO WATCHED</button>
           </ul>`;
 };
 // ${checkLocalStorageWatched(id)}
 
-//   ${checkLocalStorageQueue(id)}
+// ${checkLocalStorageQueue(id)}

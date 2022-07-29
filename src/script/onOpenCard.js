@@ -35,9 +35,11 @@ const createMarkup = async id => {
 
     refs.modalContainer.insertAdjacentHTML('beforeend', movieCard(data));
     refs.closeModalFilmBtn.addEventListener('click', closeModal);
-    setTimeout(() => {
+    setTimeout(e => {
       const btnOpenTrailer = document.querySelector('.js-trailer');
+
       btnOpenTrailer.addEventListener('click', onOpenTrailerModal);
+      // ---------------------Функция для кнопок добавить в очередь и просмотренные-----------------
     }, 0);
   } catch (err) {
     console.log(err);
@@ -70,12 +72,12 @@ const onOpenTrailerModal = async () => {
   try {
     const { data } = await movieApi.fetchMovieByIdForTrailer();
     createYoutubeUrl(data);
+    if (!youtubeKey) {
+      alertNoTrailer();
+      return;
+    }
   } catch (err) {
     console.log(err);
-  }
-  if (!youtubeKey) {
-    alertNoTrailer();
-    return;
   }
 
   const openTrailer = basicLightbox.create(`
@@ -88,4 +90,4 @@ function clearCard() {
 }
 refs.galleryEl.addEventListener('click', onGalleryContainerClick);
 
-export { clearCard, onGalleryContainerClick, createMarkup };
+// export { clearCard, onGalleryContainerClick, createMarkup };

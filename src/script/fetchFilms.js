@@ -87,4 +87,11 @@ export class MovieApi {
       },
     });
   }
+  get movieId() {
+    return this.id;
+  }
+
+  set movieId(newId) {
+    this.id = newId;
+  }
 }

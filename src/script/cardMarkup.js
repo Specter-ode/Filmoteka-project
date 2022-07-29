@@ -1,4 +1,4 @@
-import { finalGanresString } from './genresList';
+import { finalGenresString } from './getGenres';
 
 export function makeMarkup(cards) {
   return cards
@@ -39,7 +39,7 @@ export function makeMarkup(cards) {
                 </div>
                 <div class="movi-card__info-wraper">
                   <div class="movi-card">
-                    <p class="movie-card__info-item">${finalGanresString(
+                    <p class="movie-card__info-item">${finalGenresString(
                       genre_ids
                     )} | ${date.getFullYear() || ''}
                     </p>

@@ -1,25 +1,29 @@
-const saveOnLocalStorag = (key, value) => {
+const saveInStorage = (key, value) => {
   try {
-    localStorage.setItem(key, JSON.stringify(value));
+    const stateOfLocalStorage = JSON.stringify(value);
+    localStorage.setItem(key, stateOfLocalStorage);
   } catch (error) {
-    return null;
+    console.error('Set state error: ', error.message);
   }
 };
 
-const getOnLocalStorage = key => {
+const loadFromStorage = key => {
   try {
-    return JSON.parse(localStorage.getItem(key));
+    const stateOfLocalStorage = localStorage.getItem(key);
+    console.log(stateOfLocalStorage);
+    return stateOfLocalStorage === null
+      ? undefined
+      : JSON.parse(stateOfLocalStorage);
   } catch (error) {
-    return null;
+    console.error('Get state error: ', error.message);
   }
 };
+export { saveInStorage, loadFromStorage };
 
-const removeOnLocalStorage = key => {
-  try {
-    return localStorage.removeItem(key);
-  } catch (error) {
-    return null;
-  }
-};
-
-export { saveOnLocalStorag, getOnLocalStorage, removeOnLocalStorage };
+// const removeOnLocalStorage = key => {
+//   try {
+//     return localStorage.removeItem(key);
+//   } catch (error) {
+//     return null;
+//   }
+// };

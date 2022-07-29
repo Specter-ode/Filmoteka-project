@@ -10,13 +10,10 @@ import {
   microphonePagination,
 } from './pagination';
 const movieApi = new MovieApi();
-
-const genreChoice = document.querySelector('#genre_choice');
 const yearChoice = document.querySelector('#year_choice');
-const sortChoice = document.querySelector('#sort_choice');
 
 yearMenu();
-genreMenu();
+
 const onFilterChoice = async e => {
   e.preventDefault();
   paginationTui.off('afterMove', popularPagination);
@@ -47,21 +44,6 @@ const onFilterChoice = async e => {
     refs.galleryEl.innerHTML = '';
   }
 };
-
-function renderGenreMenu(options) {
-  return options.map(option => {
-    return (options = `<option value="${option.id}">${option.name}</option>`);
-  });
-}
-
-async function genreMenu() {
-  try {
-    const { data } = await movieApi.fetchMovieGenres();
-    genreChoice.insertAdjacentHTML('beforeend', renderGenreMenu(data.genres));
-  } catch (err) {
-    console.log(err);
-  }
-}
 
 function yearMenu() {
   let startYear = 1969;
