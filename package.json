@@ -1,11 +1,11 @@
 {
-  "name": "parcel-project-template",
+  "name": "filmoteka-project",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://MichaelNovikov95.github.io/Filmoteka",
+  "homepage": "https://Specter-ode.github.io/Filmoteka-project",
   "scripts": {
     "start": "parcel src/*.html -p 8888",
-    "build": "parcel build src/*.html --public-url /Filmoteka/"
+    "build": "parcel build src/*.html --public-url /Filmoteka-project/"
   },
   "repository": {
     "type": "git",
