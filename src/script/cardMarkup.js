@@ -15,15 +15,14 @@ export function makeMarkup(cards) {
         id,
       }) => {
         const date = new Date(release_date);
-        const choseTitle = title || original_title || name || original_name;
+        const chooseTitle = title || original_title || name || original_name;
         const finalTitle = function () {
-          if (choseTitle.length <= 31) {
-            return choseTitle.toUpperCase();
+          if (chooseTitle.length <= 31) {
+            return chooseTitle.toUpperCase();
           } else {
-            return choseTitle.toUpperCase().slice(0, 28) + '...';
+            return chooseTitle.toUpperCase().slice(0, 28) + '...';
           }
         };
-        // const finalRating = Math.round10(vote_average, -2);
         const finalRating = vote_average.toString().padEnd(3, '.0').slice(0, 3);
         poster_path
           ? (poster_path = `https://image.tmdb.org/t/p/w500/${poster_path}`)
@@ -31,7 +30,7 @@ export function makeMarkup(cards) {
               'https://upload.wikimedia.org/wikipedia/commons/4/47/GarvaGriha_in_KaryaBinayak.jpg');
         return (cards = `
             <li class="movie-card gallery_item" data-id="${id}">
-              <img src="${poster_path}" alt="${choseTitle}" loading="lazy" class="movie-card__img" id="${id}"/>
+              <img src="${poster_path}" alt="${chooseTitle}" loading="lazy" class="movie-card__img" id="${id}"/>
 
               <div class="movie-card__info">
                 <div class="movie-card__info-name-wraper"

@@ -1,12 +1,16 @@
 import { MovieApi } from './fetchFilms';
+import { refs } from './refs';
 import { makeMarkup } from './cardMarkup';
-import { paginationTui, paginationStart } from './pagination';
-import { popular, search } from './gallery';
-import { microphon } from './microphone';
+import {
+  paginationTui,
+  paginationStart,
+  popularPagination,
+  searchPagination,
+  filterPagination,
+  microphonePagination,
+} from './pagination';
 const movieApi = new MovieApi();
-const galleryEl = document.querySelector('.gallery');
-const searchInputEl = document.querySelector('.js-search');
-const filterInput = document.querySelectorAll('.filter__input');
+
 const genreChoice = document.querySelector('#genre_choice');
 const yearChoice = document.querySelector('#year_choice');
 const sortChoice = document.querySelector('#sort_choice');
@@ -15,12 +19,12 @@ yearMenu();
 genreMenu();
 const onFilterChoice = async e => {
   e.preventDefault();
-  paginationTui.off('afterMove', popular);
-  paginationTui.off('afterMove', search);
-  paginationTui.off('afterMove', microphon);
-  paginationTui.off('afterMove', filter);
+  paginationTui.off('afterMove', popularPagination);
+  paginationTui.off('afterMove', searchPagination);
+  paginationTui.off('afterMove', microphonePagination);
+  paginationTui.off('afterMove', filterPagination);
 
-  searchInputEl.value = '';
+  refs.searchInputEl.value = '';
   movieApi[e.target.name] = e.target.value;
 
   try {
@@ -37,21 +41,12 @@ const onFilterChoice = async e => {
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
     }
     paginationStart(promise.data);
-    galleryEl.innerHTML = makeMarkup(promise.data.results);
-    paginationTui.on('afterMove', filter);
+    refs.galleryEl.innerHTML = makeMarkup(promise.data.results);
+    paginationTui.on('afterMove', filterPagination);
   } catch (err) {
-    galleryEl.innerHTML = '';
+    refs.galleryEl.innerHTML = '';
   }
 };
-export async function filter(eventData) {
-  movieApi.page = eventData.page;
-  let promise;
-  movieApi.genre
-    ? (promise = await movieApi.fetchMovieFilterWithGenres())
-    : (promise = await movieApi.fetchMovieFilterWithoutGenres());
-
-  galleryEl.innerHTML = makeMarkup(promise.data.results);
-}
 
 function renderGenreMenu(options) {
   return options.map(option => {
@@ -83,4 +78,6 @@ function yearMenu() {
   yearChoice.insertAdjacentHTML('beforeend', years);
 }
 
-filterInput.forEach(item => item.addEventListener('change', onFilterChoice));
+refs.filterInput.forEach(item =>
+  item.addEventListener('change', onFilterChoice)
+);

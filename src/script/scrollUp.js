@@ -1,4 +1,4 @@
-import refs from './refs';
+import { refs } from './refs';
 window.onscroll = () => {
   if (window.scrollY > 700) {
     refs.btnGoTop.classList.remove('is-hidden');

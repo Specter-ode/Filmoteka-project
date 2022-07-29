@@ -5,10 +5,15 @@ export const refs = {
   btnGelleryQueueEl: document.querySelector('[data-action="queue"]'),
   btnGelleryWatchedEl: document.querySelector('[data-action="watched"]'),
   modalBtnParentEl: document.querySelector('.js-btnElement'),
-};
-export default {
+  searchInputEl: document.querySelector('.js-search'),
   container: document.getElementById('pagination'),
   paginationWrap: document.querySelector('.wraper'),
   btnGoTop: document.querySelector('.btn-move-up'),
   toggleTheme: document.querySelector('.toggle-theme'),
+  loader: document.querySelector('.loader__backdrop'),
+  filterInput: document.querySelectorAll('.filter__input'),
+  backdrop: document.querySelector('.backdrop'),
+  modalContainer: document.querySelector('.modal__container'),
+  modal: document.querySelector('.modal'),
+  closeModalFilmBtn: document.querySelector('.close__button'),
 };

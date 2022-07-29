@@ -1,12 +1,12 @@
-import {
-  checkLocalStorageWatched,
-  checkLocalStorageQueue,
-} from './modalButton';
+// import {
+//   checkLocalStorageWatched,
+//   checkLocalStorageQueue,
+// } from './modalButton';
 
-import {
-  localStorageKeyQueue,
-  localStorageKeyWatched,
-} from './localStorageKey';
+// import {
+//   localStorageKeyQueue,
+//   localStorageKeyWatched,
+// } from './localStorageKey';
 
 export const movieCard = ({
   id,
@@ -54,11 +54,12 @@ export const movieCard = ({
               ${overview}
           </p>
           <ul class="button__place">
-          <button type="button" class="film-modal__button film-modal__button--active " data-id="${id}" data-action="queueModal">${checkLocalStorageQueue(
-    id
-  )}</button>
-           <button type="button" class="film-modal__button " data-action="watchedModal">${checkLocalStorageWatched(
-             id
-           )}</button>
+          <button type="button" class="film-modal__button film-modal__button--active " data-id="${id}" data-action="queueModal"> queue
+  </button>
+           <button type="button" class="film-modal__button " data-action="watchedModal"> watched
+           </button>
           </ul>`;
 };
+// ${checkLocalStorageWatched(id)}
+
+//   ${checkLocalStorageQueue(id)}
