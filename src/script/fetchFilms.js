@@ -16,7 +16,6 @@ export class MovieApi {
     this.genre = '';
     this.year = null;
     this.sort = 'popularity.desc';
-    // this.testEvent = 'queue';
   }
   fetchFilmsByInput() {
     return axios.get(`${this.#SEARCH_URL}`, {
@@ -86,12 +85,5 @@ export class MovieApi {
         language: 'en-US',
       },
     });
-  }
-  get movieId() {
-    return this.id;
-  }
-
-  set movieId(newId) {
-    this.id = newId;
   }
 }

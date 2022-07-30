@@ -3,6 +3,7 @@ import './script/getGenres';
 import './script/gallery';
 import './script/cardMarkup';
 import './script/onOpenCard';
+import './script/onClickAddToLibrary';
 import './script/filter';
 import './script/microphone';
 import './script/onCloseModal';
@@ -11,6 +12,3 @@ import './script/scrollUp';
 // import './script/signup-modal';
 // import './script/signin-modal';
 import './script/modal_developer';
-
-// import './script/localStorageKey';
-import './script/onClickAddToLibrary';

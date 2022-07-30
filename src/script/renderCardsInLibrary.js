@@ -1,6 +1,6 @@
-import { finalGenresString } from './getGenres';
+import { finalGenresForLibrary } from './getGenres';
 
-export function makeMarkup(cards) {
+export function renderCardsInLibrary(cards) {
   return cards
     .map(
       ({
@@ -10,7 +10,7 @@ export function makeMarkup(cards) {
         original_name,
         poster_path,
         release_date,
-        genre_ids,
+        genres,
         vote_average,
         id,
       }) => {
@@ -39,8 +39,8 @@ export function makeMarkup(cards) {
                 </div>
                 <div class="movi-card__info-wraper">
                   <div class="movi-card">
-                  <p class="movie-card__info-item">${finalGenresString(
-                    genre_ids
+                  <p class="movie-card__info-item">${finalGenresForLibrary(
+                    genres
                   )} | ${date.getFullYear() || ''}
                   </p>
                   </div>

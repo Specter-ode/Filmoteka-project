@@ -10,17 +10,14 @@ const movieApi = new MovieApi();
 export let youtubeKey = '';
 
 const createMarkup = async id => {
-  console.log(refs.modalContainer);
-  console.log(refs.galleryEl);
   refs.loader.classList.remove('is-hidden');
   clearCard();
   movieApi.id = id;
   try {
     const { data } = await movieApi.fetchMovieById();
-    console.log(data);
+
     refs.modalContainer.insertAdjacentHTML('beforeend', movieCard(data));
     refs.closeModalFilmBtn.addEventListener('click', closeModal);
-    console.log(refs.modalContainer);
     setTimeout(() => {
       const btnOpenTrailer = document.querySelector('.js-trailer');
       btnOpenTrailer.addEventListener('click', onOpenTrailerModal);
@@ -33,14 +30,12 @@ const createMarkup = async id => {
   refs.loader.classList.add('is-hidden');
 };
 
-const onGalleryContainerClick = e => {
+const onGalleryContainerClickInLibrary = e => {
   e.preventDefault();
   if (e.target.nodeName !== 'IMG') {
     return;
   }
-  console.log(e.target.nodeName);
-  console.log(e.target.id);
-  console.log(refs.galleryEl);
+
   refs.backdrop.classList.remove('is-hidden');
   document.body.classList.add('modal-is-open');
   createMarkup(e.target.id);
@@ -75,6 +70,4 @@ function clearCard() {
   refs.modalContainer.innerHTML = '';
 }
 
-if (window.location.pathname === '/index.html') {
-  refs.galleryEl.addEventListener('click', onGalleryContainerClick);
-}
+refs.galleryLibrary.addEventListener('click', onGalleryContainerClickInLibrary);

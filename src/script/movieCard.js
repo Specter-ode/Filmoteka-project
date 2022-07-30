@@ -1,12 +1,7 @@
-// import {
-//   checkLocalStorageWatched,
-//   checkLocalStorageQueue,
-// } from './modalButton';
-
-// import {
-//   localStorageKeyQueue,
-//   localStorageKeyWatched,
-// } from './localStorageKey';
+import {
+  renderBtnQueueFromLocalStorage,
+  renderBtnWatchedFromLocalStorage,
+} from './onClickAddToLibrary';
 
 export const movieCard = ({
   id,
@@ -54,10 +49,11 @@ export const movieCard = ({
               ${overview}
           </p>
           <ul class="button__place">
-          <button type="button" class="film-modal__button queue-js" data-id="${id}" name="QUEUE">ADD TO QUEUE</button>
-           <button type="button" class="film-modal__button watched-js" data-id="${id}" name="WATCHED">ADD TO WATCHED</button>
+          <button type="button" class="film-modal__button film-modal__button--active" data-id="${id}" name="queue" data-action="queue">${renderBtnQueueFromLocalStorage(
+    id
+  )}</button>
+          <button type="button" class="film-modal__button " data-id="${id}" name="watched" data-action="queue">${renderBtnWatchedFromLocalStorage(
+    id
+  )}</button>
           </ul>`;
 };
-// ${checkLocalStorageWatched(id)}
-
-// ${checkLocalStorageQueue(id)}

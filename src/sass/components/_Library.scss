@@ -26,7 +26,8 @@ p {
   margin: 0;
 }
 
-.gallery {
+.gallery,
+.gallery-in-library {
   display: grid;
   gap: 20px;
   justify-content: center;

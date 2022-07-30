@@ -2,6 +2,7 @@ export const refs = {
   btnHeaderEl: document.querySelector('.js-btn__header'),
   refLibreryHeaderEl: document.querySelector('.js-library__ref'),
   galleryEl: document.querySelector('.gallery'),
+  galleryLibrary: document.querySelector('.gallery-in-library'),
   btnGelleryQueueEl: document.querySelector('[data-action="queue"]'),
   btnGelleryWatchedEl: document.querySelector('[data-action="watched"]'),
   modalBtnParentEl: document.querySelector('.js-btnElement'),
