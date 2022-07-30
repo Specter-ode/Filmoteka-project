@@ -2,12 +2,11 @@ import { MovieApi } from './fetchFilms';
 import { refs } from './refs';
 import { movieCard } from './movieCard';
 import { alertNoTrailer } from './alerts';
-import { closeModal } from './onCloseModal';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
 const movieApi = new MovieApi();
-export let youtubeKey = '';
+let youtubeKey = '';
 
 const createMarkup = async id => {
   refs.loader.classList.remove('is-hidden');
@@ -69,5 +68,27 @@ const onOpenTrailerModal = async () => {
 function clearCard() {
   refs.modalContainer.innerHTML = '';
 }
+
+function onClickBackdrop(event) {
+  if (event.currentTarget === event.target) {
+    closeModal();
+  }
+}
+function onClickEsc(event) {
+  if (event.code === 'Escape') {
+    closeModal();
+  }
+}
+function closeModal() {
+  refs.modal.classList.add('is-hidden');
+  refs.backdrop.classList.add('is-hidden');
+  document.body.classList.remove('modal-is-open');
+  refs.modalContainer.innerHTML = '';
+  youtubeKey = '';
+  refs.closeModalFilmBtn.removeEventListener('click', closeModal);
+}
+
+refs.backdrop.addEventListener('click', onClickBackdrop);
+document.addEventListener('keydown', onClickEsc);
 
 refs.galleryLibrary.addEventListener('click', onGalleryContainerClickInLibrary);

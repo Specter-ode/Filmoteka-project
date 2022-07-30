@@ -24,7 +24,7 @@ export const movieCard = ({
   const voteAverageFixed = vote_average.toFixed(1);
   return `
       <div class="image__place" id=${id}>
-      <button type="button" class="button__trailer js-trailer">
+      <button type="button" class="button__trailer js-trailer" name="trailer">
       </button>
         <img class="modal-poster" src="${poster_path}" alt="${original_title}" />
       </div>

@@ -6,7 +6,6 @@ import './script/onOpenCard';
 import './script/onClickAddToLibrary';
 import './script/filter';
 import './script/microphone';
-import './script/onCloseModal';
 import './script/scrollUp';
 // import './script/auth-modal';
 // import './script/signup-modal';
