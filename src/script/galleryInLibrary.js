@@ -30,6 +30,7 @@ const renderMoviesInLibrary = async key => {
 
 const renderMoviesInLibraryOnClickBtnInHeader = async e => {
   choosenList = e.target.dataset.action;
+  activeButtonStyle(choosenList, e);
   console.log('choosenList: ', choosenList);
   const AddedList = loadFromStorage(choosenList) || [];
   console.log(AddedList);
@@ -57,6 +58,16 @@ async function fetchCardsForLibrary(AddedList) {
     return response;
   });
   return await Promise.all(arrayOfPromises);
+}
+
+function activeButtonStyle(choosenList, e) {
+  if (choosenList === 'watched') {
+    e.target.classList.add('active');
+    e.target.previousElementSibling.classList.remove('active');
+  } else {
+    e.target.classList.add('active');
+    e.target.nextElementSibling.classList.remove('active');
+  }
 }
 
 if (window.location.pathname === '/library.html') {
