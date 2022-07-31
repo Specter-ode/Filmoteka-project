@@ -24,13 +24,15 @@ function onClickAddTo(e) {
   const name = e.target.name;
   console.log('id: ', id);
   console.log('name: ', name);
-  activeButtonStyle(name, e);
-  changeTextContent(name, e);
+  if (name !== 'trailer') {
+    activeButtonStyle(name, e);
+    changeTextContent(name, e);
+  }
   if (name === 'queue') {
     onClickQueue(id);
-    return;
+  } else if (name === 'watched') {
+    onClickWatched(id);
   }
-  onClickWatched(id);
 }
 
 function onClickQueue(id) {
