@@ -70,9 +70,9 @@ function activeButtonStyle(choosenList, e) {
   }
 }
 
-if (window.location.pathname === '/library.html') {
-  renderMoviesInLibrary(keyQueue);
-}
+// if (window.location.pathname === '/library.html') {
+renderMoviesInLibrary(keyQueue);
+// }
 
 queueBtn.addEventListener('click', renderMoviesInLibraryOnClickBtnInHeader);
 watchedBtn.addEventListener('click', renderMoviesInLibraryOnClickBtnInHeader);

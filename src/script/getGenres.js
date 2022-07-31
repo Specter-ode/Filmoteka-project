@@ -14,9 +14,9 @@ const getGenres = async () => {
     console.log(err);
   }
 };
-if (window.location.pathname === '/index.html') {
-  getGenres();
-}
+// if (window.location.pathname === '/index.html') {
+getGenres();
+// }
 
 export const finalGenresString = function (genre_ids) {
   const genresList = genresArr.filter(({ id }) => {

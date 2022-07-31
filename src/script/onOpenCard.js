@@ -94,4 +94,6 @@ function closeModal() {
 
 refs.backdrop.addEventListener('click', onClickBackdrop);
 document.addEventListener('keydown', onClickEsc);
+// if (window.location.pathname === '/index.html') {
 refs.galleryEl.addEventListener('click', onGalleryContainerClick);
+// }
