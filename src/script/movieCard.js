@@ -49,10 +49,10 @@ export const movieCard = ({
               ${overview}
           </p>
           <ul class="button__place">
-          <button type="button" class="film-modal__button film-modal__button--active" data-id="${id}" name="queue" data-action="queue">${renderBtnQueueFromLocalStorage(
+          <button type="button" class="film-modal__button film-modal__button--active" data-id="${id}" name="queue">${renderBtnQueueFromLocalStorage(
     id
   )}</button>
-          <button type="button" class="film-modal__button " data-id="${id}" name="watched" data-action="queue">${renderBtnWatchedFromLocalStorage(
+          <button type="button" class="film-modal__button " data-id="${id}" name="watched" >${renderBtnWatchedFromLocalStorage(
     id
   )}</button>
           </ul>`;

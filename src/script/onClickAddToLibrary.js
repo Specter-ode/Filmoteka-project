@@ -1,22 +1,15 @@
 import { refs } from './refs';
-import { MovieApi } from './fetchFilms';
 import {
   loadFromStorage,
   addToEmptyStorage,
   addToStorage,
   removeFromStorage,
 } from './localStorage';
-import { choosenList } from './galleryInLibrary';
-import { renderCardsInLibrary } from './renderCardsInLibrary';
+
 const keyQueue = 'queue';
 const keyWatched = 'watched';
-const movieApi = new MovieApi();
 
 function onClickAddTo(e) {
-  console.log(
-    'window.location.pathname in onClickAddTo: ',
-    window.location.pathname
-  );
   if (e.target.nodeName !== 'BUTTON') {
     return;
   }
@@ -24,10 +17,11 @@ function onClickAddTo(e) {
   const name = e.target.name;
   console.log('id: ', id);
   console.log('name: ', name);
-  if (name !== 'trailer') {
-    activeButtonStyle(name, e);
-    changeTextContent(name, e);
+  if (name === 'trailer') {
+    return;
   }
+  activeButtonStyle(name, e);
+  changeTextContent(name, e);
   if (name === 'queue') {
     onClickQueue(id);
   } else if (name === 'watched') {
@@ -103,52 +97,6 @@ function changeTextContent(name, e) {
   return (e.target.textContent = `Add to ${name}`);
 }
 
-const renderMoviesInLibraryOnClickInCards = async e => {
-  const name = e.target.name;
-  console.log(choosenList);
-  console.log(name);
-  if (name !== choosenList) {
-    return;
-  }
-  const AddedList = loadFromStorage(name) || [];
-  console.log(AddedList);
-  if (AddedList.length === 0) {
-    refs.galleryLibrary.innerHTML = '';
-    return;
-  }
-  try {
-    const loadAllMoviesByIdInLocalStorage = await fetchCardsForLibrary(
-      AddedList
-    );
-    console.log(loadAllMoviesByIdInLocalStorage);
-    const allLibraryMovies = loadAllMoviesByIdInLocalStorage.map(
-      card => card.data
-    );
-    console.log(allLibraryMovies);
-    refs.galleryLibrary.innerHTML = renderCardsInLibrary(allLibraryMovies);
-  } catch (err) {
-    console.log(err.message);
-  }
-};
-
 refs.modalContainer.addEventListener('click', onClickAddTo);
-if (window.location.pathname === '/library.html') {
-  console.log(
-    'window.location.pathname in renderMoviesInLibraryOnClickInCards: ',
-    window.location.pathname
-  );
-  refs.modalContainer.addEventListener(
-    'click',
-    renderMoviesInLibraryOnClickInCards
-  );
-}
-async function fetchCardsForLibrary(AddedList) {
-  const arrayOfPromises = AddedList.map(async id => {
-    movieApi.id = id;
-    const response = await movieApi.fetchMovieById();
-    return response;
-  });
-  return await Promise.all(arrayOfPromises);
-}
 
 export { renderBtnQueueFromLocalStorage, renderBtnWatchedFromLocalStorage };

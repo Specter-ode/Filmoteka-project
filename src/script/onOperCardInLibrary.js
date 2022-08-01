@@ -1,6 +1,6 @@
 import { MovieApi } from './fetchFilms';
 import { refs } from './refs';
-import { movieCard } from './movieCard';
+import { movieCard } from './movieCard-library';
 import { alertNoTrailer } from './alerts';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
@@ -90,5 +90,4 @@ function closeModal() {
 
 refs.backdrop.addEventListener('click', onClickBackdrop);
 document.addEventListener('keydown', onClickEsc);
-
 refs.galleryLibrary.addEventListener('click', onGalleryContainerClickInLibrary);

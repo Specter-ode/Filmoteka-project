@@ -4,12 +4,11 @@ import { movieCard } from './movieCard';
 import { alertNoTrailer } from './alerts';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
+
 const movieApi = new MovieApi();
 let youtubeKey = '';
 
 const createMarkup = async id => {
-  console.log(refs.modalContainer);
-  console.log(refs.galleryEl);
   refs.loader.classList.remove('is-hidden');
   clearCard();
   movieApi.id = id;
@@ -18,7 +17,6 @@ const createMarkup = async id => {
     console.log(data);
     refs.modalContainer.insertAdjacentHTML('beforeend', movieCard(data));
     refs.closeModalFilmBtn.addEventListener('click', closeModal);
-    console.log(refs.modalContainer);
     setTimeout(() => {
       const btnOpenTrailer = document.querySelector('.js-trailer');
       btnOpenTrailer.addEventListener('click', onOpenTrailerModal);
@@ -38,7 +36,7 @@ const onGalleryContainerClick = e => {
   }
   console.log(e.target.nodeName);
   console.log(e.target.id);
-  console.log(refs.galleryEl);
+
   refs.backdrop.classList.remove('is-hidden');
   document.body.classList.add('modal-is-open');
   createMarkup(e.target.id);
@@ -94,6 +92,4 @@ function closeModal() {
 
 refs.backdrop.addEventListener('click', onClickBackdrop);
 document.addEventListener('keydown', onClickEsc);
-// if (window.location.pathname === '/index.html') {
 refs.galleryEl.addEventListener('click', onGalleryContainerClick);
-// }

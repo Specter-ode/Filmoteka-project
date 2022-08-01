@@ -14,11 +14,9 @@ const getGenres = async () => {
     console.log(err);
   }
 };
-// if (window.location.pathname === '/index.html') {
 getGenres();
-// }
 
-export const finalGenresString = function (genre_ids) {
+const finalGenresString = function (genre_ids) {
   const genresList = genresArr.filter(({ id }) => {
     return genre_ids.includes(id);
   });
@@ -35,7 +33,7 @@ export const finalGenresString = function (genre_ids) {
     );
   }
 };
-export const finalGenresForLibrary = function (genres) {
+const finalGenresForLibrary = function (genres) {
   if (genres.length === 0) {
     return;
   } else if (genres.length < 3) {
@@ -54,3 +52,5 @@ function renderGenreMenu(options) {
     return (options = `<option value="${option.id}">${option.name}</option>`);
   });
 }
+
+export { finalGenresString, finalGenresForLibrary };

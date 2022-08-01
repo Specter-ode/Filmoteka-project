@@ -6,7 +6,6 @@ import {
   paginationStart,
   popularPagination,
   searchPagination,
-  filterPagination,
   microphonePagination,
 } from './pagination';
 const movieApi = new MovieApi();
@@ -20,7 +19,7 @@ const onFilterChoice = async e => {
   paginationTui.off('afterMove', searchPagination);
   paginationTui.off('afterMove', microphonePagination);
   paginationTui.off('afterMove', filterPagination);
-
+  paginationTui.movePageTo(1);
   refs.searchInputEl.value = '';
   movieApi[e.target.name] = e.target.value;
 
@@ -41,10 +40,18 @@ const onFilterChoice = async e => {
     refs.galleryEl.innerHTML = makeMarkup(promise.data.results);
     paginationTui.on('afterMove', filterPagination);
   } catch (err) {
-    refs.galleryEl.innerHTML = '';
+    console.log(message.err);
   }
 };
+async function filterPagination(eventData) {
+  movieApi.page = eventData.page;
+  let promise;
+  movieApi.genre
+    ? (promise = await movieApi.fetchMovieFilterWithGenres())
+    : (promise = await movieApi.fetchMovieFilterWithoutGenres());
 
+  refs.galleryEl.innerHTML = makeMarkup(promise.data.results);
+}
 function yearMenu() {
   let startYear = 1969;
   let realYear = new Date().getFullYear();
