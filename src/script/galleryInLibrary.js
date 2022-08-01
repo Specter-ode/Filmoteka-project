@@ -3,13 +3,13 @@ import { MovieApi } from './fetchFilms';
 import { renderCardsInLibrary } from './renderCardsInLibrary';
 import { loadFromStorage } from './localStorage';
 export let choosenList = 'queue';
-const keyQueue = 'queue';
+// const keyQueue = 'queue';
 const movieApi = new MovieApi();
 const watchedBtn = document.querySelector('[data-action="watched"]');
 const queueBtn = document.querySelector('[data-action="queue"]');
 
 const renderMoviesInLibrary = async () => {
-  const AddedList = loadFromStorage(keyQueue) || [];
+  const AddedList = loadFromStorage('queue') || [];
   console.log(AddedList);
   if (AddedList.length === 0) {
     refs.galleryLibrary.innerHTML = `<img src='https://upload.wikimedia.org/wikipedia/commons/4/47/GarvaGriha_in_KaryaBinayak.jpg' alt="Sorry, you don't add movies at this list" loading="lazy" class="movie-card__img"/>`;
@@ -53,22 +53,13 @@ const renderMoviesInLibraryOnClickBtnInHeader = async e => {
     console.log(err.message);
   }
 };
-async function fetchCardsForLibrary(AddedList) {
-  const arrayOfPromises = AddedList.map(async id => {
-    movieApi.id = id;
-    const response = await movieApi.fetchMovieById();
-    return response;
-  });
-  return await Promise.all(arrayOfPromises);
-}
 
-async function fetchCardsForLibrary(AddedList) {
+function fetchCardsForLibrary(AddedList) {
   const arrayOfPromises = AddedList.map(async id => {
     movieApi.id = id;
-    const response = await movieApi.fetchMovieById();
-    return response;
+    return await movieApi.fetchMovieById();
   });
-  return await Promise.all(arrayOfPromises);
+  return Promise.all(arrayOfPromises);
 }
 
 function activeButtonStyle(choosenList, e) {
