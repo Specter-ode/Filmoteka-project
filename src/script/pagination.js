@@ -21,6 +21,16 @@ export function paginationStart(data) {
   return paginationTui;
 }
 
+export async function filterPagination(eventData) {
+  movieApi.page = eventData.page;
+  let promise;
+  movieApi.genre
+    ? (promise = await movieApi.fetchMovieFilterWithGenres())
+    : (promise = await movieApi.fetchMovieFilterWithoutGenres());
+
+  refs.galleryEl.innerHTML = makeMarkup(promise.data.results);
+}
+
 export async function searchPagination(eventData) {
   movieApi.page = eventData.page;
   movieApi.query = refs.searchInputEl.value;
@@ -38,5 +48,6 @@ export async function microphonePagination(eventData) {
   movieApi.page = eventData.page;
   movieApi.query = refs.searchInputEl.value;
   const { data } = await movieApi.fetchFilmsByInput();
+
   refs.galleryEl.innerHTML = makeMarkup(data.results);
 }
