@@ -1,6 +1,25 @@
-import { finalGenresString } from './getGenres';
+import { loadFromStorage } from './localStorage';
+const LOCALSTORAGE_KEY = 'genres';
 
-export function makeMarkup(cards) {
+const finalGenresString = function (genre_ids) {
+  const genresArr = loadFromStorage(LOCALSTORAGE_KEY) || [];
+  const genresList = genresArr.filter(({ id }) => {
+    return genre_ids.includes(id);
+  });
+  if (genresList.length === 0) {
+    return;
+  } else if (genresList.length < 3) {
+    return genresList.map(genreObj => genreObj.name).join(', ');
+  } else {
+    return (
+      genresList
+        .map(genreObj => genreObj.name)
+        .slice(0, 2)
+        .join(', ') + '...'
+    );
+  }
+};
+export function renderCards(cards) {
   return cards
     .map(
       ({

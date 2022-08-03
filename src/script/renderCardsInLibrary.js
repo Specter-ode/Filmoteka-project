@@ -1,4 +1,16 @@
-import { finalGenresForLibrary } from './getGenres';
+const finalGenresForLibrary = function (genres) {
+  if (genres.length === 0) {
+    return;
+  } else if (genres.length < 3) {
+    return genres.map(genre => genre.name).join(', ');
+  }
+  return (
+    genres
+      .map(genre => genre.name)
+      .slice(0, 2)
+      .join(', ') + '...'
+  );
+};
 
 export function renderCardsInLibrary(cards) {
   return cards

@@ -15,8 +15,6 @@ function onClickAddTo(e) {
   }
   const id = Number(e.target.dataset.id);
   const name = e.target.name;
-  console.log('id: ', id);
-  console.log('name: ', name);
   if (name === 'trailer') {
     return;
   }
@@ -34,28 +32,19 @@ function onClickQueue(id) {
   console.log(localStorage.getItem(keyQueue));
   console.log(localStorage.getItem(keyQueue) === null);
   if (!localStorage.getItem(keyQueue)) {
-    console.log('addToEmptyStorage');
     addToEmptyStorage(`queue`, id);
   } else if (localStorage.getItem(keyQueue).includes(id)) {
-    console.log('removeFromStorage');
     removeFromStorage(keyQueue, id);
   } else {
-    console.log('addToStorage');
     addToStorage(keyQueue, id);
   }
 }
 function onClickWatched(id) {
-  console.log('Ви натиснули на кнопку WATCHED, ID цієї картки - ', id);
-  console.log(localStorage.getItem(keyWatched));
-  console.log(localStorage.getItem(keyWatched) === null);
   if (!localStorage.getItem(keyWatched)) {
-    console.log('addToEmptyStorage');
     addToEmptyStorage(keyWatched, id);
   } else if (localStorage.getItem(keyWatched).includes(id)) {
-    console.log('removeFromStorage');
     removeFromStorage(keyWatched, id);
   } else {
-    console.log('addToStorage');
     addToStorage(keyWatched, id);
   }
 }
@@ -88,9 +77,6 @@ function activeButtonStyle(name, e) {
   }
 }
 function changeTextContent(name, e) {
-  console.log(e.target.textContent);
-  console.log(`Add to ${name}`);
-  console.log(e.target.textContent === `Add to ${name}`);
   if (e.target.textContent === `Add to ${name}`) {
     return (e.target.textContent = `Remove from ${name}`);
   }

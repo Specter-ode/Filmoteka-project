@@ -1,7 +1,7 @@
 import './script/refs';
 import './script/getGenres';
 import './script/gallery';
-import './script/cardMarkup';
+import './script/renderCards';
 import './script/onOpenCard';
 import './script/onClickAddToLibrary';
 import './script/filter';

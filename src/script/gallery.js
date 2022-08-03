@@ -1,7 +1,7 @@
 import { refs } from './refs';
 import { alertNoEmptySearch, alertNoFilmsFound } from './alerts';
 import { MovieApi } from './fetchFilms';
-import { makeMarkup } from './cardMarkup';
+import { renderCards } from './renderCards';
 import { debounce } from 'debounce';
 import {
   paginationTui,
@@ -24,7 +24,7 @@ const renderPopularFilms = async () => {
   try {
     const { data } = await movieApi.fetchPopularFilms();
     paginationStart(data);
-    refs.galleryEl.innerHTML = makeMarkup(data.results);
+    refs.galleryEl.innerHTML = renderCards(data.results);
     paginationTui.on('afterMove', popularPagination);
   } catch (err) {
     console.log(err);
@@ -59,7 +59,7 @@ const onSearchInput = async e => {
       refs.galleryEl.innerHTML = '';
       return;
     } else {
-      refs.galleryEl.innerHTML = makeMarkup(data.results);
+      refs.galleryEl.innerHTML = renderCards(data.results);
     }
     paginationTui.on('afterMove', searchPagination);
     paginationTui.reset(data.total_results);

@@ -1,6 +1,6 @@
 import { MovieApi } from './fetchFilms';
 import { refs } from './refs';
-import { makeMarkup } from './cardMarkup';
+import { renderCards } from './renderCards';
 import {
   paginationTui,
   paginationStart,
@@ -37,7 +37,7 @@ const onFilterChoice = async e => {
       refs.paginationWrap.classList.add('tui-pagination', 'hidden');
     }
     paginationStart(promise.data);
-    refs.galleryEl.innerHTML = makeMarkup(promise.data.results);
+    refs.galleryEl.innerHTML = renderCards(promise.data.results);
     paginationTui.on('afterMove', filterPagination);
   } catch (err) {
     console.log(message.err);
@@ -50,7 +50,7 @@ async function filterPagination(eventData) {
     ? (promise = await movieApi.fetchMovieFilterWithGenres())
     : (promise = await movieApi.fetchMovieFilterWithoutGenres());
 
-  refs.galleryEl.innerHTML = makeMarkup(promise.data.results);
+  refs.galleryEl.innerHTML = renderCards(promise.data.results);
 }
 function yearMenu() {
   let startYear = 1969;

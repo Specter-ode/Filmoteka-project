@@ -1,6 +1,6 @@
 import { MovieApi } from './fetchFilms';
 import { refs } from './refs';
-import { makeMarkup } from './cardMarkup';
+import { renderCards } from './renderCards';
 import {
   paginationTui,
   popularPagination,
@@ -44,7 +44,6 @@ function listenSpeech(e) {
   const transcript = e.results[0][0].transcript;
   refs.searchInputEl.value = transcript;
   if (e.results[0].isFinal) {
-    console.log('is Final', e.results[0].isFinal);
     recognition.onspeechend = stopRecognition();
   }
   onSearchInputForMicrophone(transcript);
@@ -70,7 +69,6 @@ const onSearchInputForMicrophone = async movieName => {
   paginationTui.off('afterMove', filterPagination);
   paginationTui.off('afterMove', microphonePagination);
   paginationTui.movePageTo(1);
-  console.log(movieName);
   movieApi.page = 1;
   movieApi.query = movieName;
   try {
@@ -86,7 +84,7 @@ const onSearchInputForMicrophone = async movieName => {
       alertNoFilmsFound();
       return;
     } else {
-      refs.galleryEl.innerHTML = makeMarkup(data.results);
+      refs.galleryEl.innerHTML = renderCards(data.results);
     }
     paginationTui.on('afterMove', microphonePagination);
     paginationTui.reset(data.total_results);

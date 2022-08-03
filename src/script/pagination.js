@@ -1,7 +1,7 @@
 import Pagination from 'tui-pagination';
 import { refs } from './refs';
 import { MovieApi } from './fetchFilms';
-import { makeMarkup } from './cardMarkup';
+import { renderCards } from './renderCards';
 
 const movieApi = new MovieApi();
 const options = {
@@ -28,20 +28,20 @@ export async function filterPagination(eventData) {
     ? (promise = await movieApi.fetchMovieFilterWithGenres())
     : (promise = await movieApi.fetchMovieFilterWithoutGenres());
 
-  refs.galleryEl.innerHTML = makeMarkup(promise.data.results);
+  refs.galleryEl.innerHTML = renderCards(promise.data.results);
 }
 
 export async function searchPagination(eventData) {
   movieApi.page = eventData.page;
   movieApi.query = refs.searchInputEl.value;
   const { data } = await movieApi.fetchFilmsByInput();
-  refs.galleryEl.innerHTML = makeMarkup(data.results);
+  refs.galleryEl.innerHTML = renderCards(data.results);
 }
 
 export async function popularPagination(eventData) {
   movieApi.page = eventData.page;
   const { data } = await movieApi.fetchPopularFilms();
-  refs.galleryEl.innerHTML = makeMarkup(data.results);
+  refs.galleryEl.innerHTML = renderCards(data.results);
 }
 
 export async function microphonePagination(eventData) {
@@ -49,5 +49,5 @@ export async function microphonePagination(eventData) {
   movieApi.query = refs.searchInputEl.value;
   const { data } = await movieApi.fetchFilmsByInput();
 
-  refs.galleryEl.innerHTML = makeMarkup(data.results);
+  refs.galleryEl.innerHTML = renderCards(data.results);
 }

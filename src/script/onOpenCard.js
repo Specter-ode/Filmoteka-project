@@ -14,7 +14,6 @@ const createMarkup = async id => {
   movieApi.id = id;
   try {
     const { data } = await movieApi.fetchMovieById();
-    console.log(data);
     refs.modalContainer.insertAdjacentHTML('beforeend', movieCard(data));
     refs.closeModalFilmBtn.addEventListener('click', closeModal);
     setTimeout(() => {
@@ -34,8 +33,6 @@ const onGalleryContainerClick = e => {
   if (e.target.nodeName !== 'IMG') {
     return;
   }
-  console.log(e.target.nodeName);
-  console.log(e.target.id);
 
   refs.backdrop.classList.remove('is-hidden');
   document.body.classList.add('modal-is-open');

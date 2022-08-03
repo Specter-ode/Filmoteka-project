@@ -57,7 +57,6 @@ function onSubmitSigninHandler(e) {
 
 function onSubmitSignupHandler(e) {
   e.preventDefault();
-  console.log('hi');
   const email = e.target.elements.email.value;
   const password = e.target.elements.password.value;
   createUserWithEmailAndPassword(auth, email, password)

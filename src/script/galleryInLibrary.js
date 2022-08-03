@@ -3,14 +3,13 @@ import { MovieApi } from './fetchFilms';
 import { renderCardsInLibrary } from './renderCardsInLibrary';
 import { loadFromStorage } from './localStorage';
 export let choosenList = 'queue';
-// const keyQueue = 'queue';
+const keyQueue = 'queue';
 const movieApi = new MovieApi();
 const watchedBtn = document.querySelector('[data-action="watched"]');
 const queueBtn = document.querySelector('[data-action="queue"]');
 
 const renderMoviesInLibrary = async () => {
-  const AddedList = loadFromStorage('queue') || [];
-  console.log(AddedList);
+  const AddedList = loadFromStorage(keyQueue) || [];
   if (AddedList.length === 0) {
     refs.galleryLibrary.innerHTML = `<img src='https://upload.wikimedia.org/wikipedia/commons/4/47/GarvaGriha_in_KaryaBinayak.jpg' alt="Sorry, you don't add movies at this list" loading="lazy" class="movie-card__img"/>`;
     return;
@@ -22,7 +21,6 @@ const renderMoviesInLibrary = async () => {
     const allLibraryMovies = loadAllMoviesByIdInLocalStorage.map(
       card => card.data
     );
-    console.log(allLibraryMovies);
     refs.galleryLibrary.innerHTML = renderCardsInLibrary(allLibraryMovies);
   } catch (err) {
     console.log(err.message);
@@ -33,9 +31,7 @@ renderMoviesInLibrary();
 const renderMoviesInLibraryOnClickBtnInHeader = async e => {
   choosenList = e.target.dataset.action;
   activeButtonStyle(choosenList, e);
-  console.log('choosenList: ', choosenList);
   const AddedList = loadFromStorage(choosenList) || [];
-  console.log(AddedList);
   if (AddedList.length === 0) {
     refs.galleryLibrary.innerHTML = '';
     return;
@@ -47,7 +43,6 @@ const renderMoviesInLibraryOnClickBtnInHeader = async e => {
     const allLibraryMovies = loadAllMoviesByIdInLocalStorage.map(
       card => card.data
     );
-    console.log(allLibraryMovies);
     refs.galleryLibrary.innerHTML = renderCardsInLibrary(allLibraryMovies);
   } catch (err) {
     console.log(err.message);

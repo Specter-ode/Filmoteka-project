@@ -33,8 +33,6 @@ const addToEmptyStorage = (key, id) => {
 
 const addToStorage = (key, id) => {
   let idArray = [...JSON.parse(localStorage.getItem(key))];
-  console.log('idArray: ', idArray);
-  console.log('localStorage.getItem(key) ', localStorage.getItem(key));
   idArray.push(id);
   try {
     const stringOfData = JSON.stringify(idArray);
