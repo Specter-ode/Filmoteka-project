@@ -28,9 +28,6 @@ function onClickAddTo(e) {
 }
 
 function onClickQueue(id) {
-  console.log('Нажатие на кнопку QUEUE, ID это карточки - ', id);
-  console.log(localStorage.getItem(keyQueue));
-  console.log(localStorage.getItem(keyQueue) === null);
   if (!localStorage.getItem(keyQueue)) {
     addToEmptyStorage(`queue`, id);
   } else if (localStorage.getItem(keyQueue).includes(id)) {
